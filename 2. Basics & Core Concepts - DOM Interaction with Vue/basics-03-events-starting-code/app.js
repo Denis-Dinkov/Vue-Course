@@ -5,6 +5,21 @@ const app = Vue.createApp({
       name: "",
     };
   },
+  watch: {
+    counter(value) {
+      if(value > 50){
+        this.counter = 0
+      } 
+    }
+  },
+  computed: {
+    fullName() {
+      if (this.name == "") {
+        return "";
+      }
+      return this.name + " " + "dinkov";
+    },
+  },
   methods: {
     add(num) {
       this.counter += num;
@@ -15,9 +30,10 @@ const app = Vue.createApp({
     changeName(e) {
       this.name = e.currentTarget.value;
     },
-    onSumbit(){
-    
-    }
+    clearName() {
+      this.name = "";
+    },
+    onSumbit() {},
   },
 });
 
