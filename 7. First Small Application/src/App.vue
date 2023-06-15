@@ -3,7 +3,7 @@
     <header>
       <h1>My Friends</h1>
     </header>
-    <new-friend></new-friend>
+    <new-friend @add-contact="addContact"></new-friend>
     <ul>
       <friend-contact
        v-for="friend in friends"
@@ -13,7 +13,8 @@
        :phone-number="friend.phone"
        :email="friend.email"
        :favorite="friend.isFavorite"
-       @toggle-favorite="toggleFavStatus"></friend-contact>
+       @toggle-favorite="toggleFavStatus"
+       @delete-person="deletePerson"></friend-contact>
     </ul>
   </section>
 </template>
@@ -41,10 +42,23 @@ export default {
     }
   },
   methods: {
+    addContact(name,phone,email){
+      const createNewFriend = {
+          id: name,
+          name: name,
+          phone: phone.toString(),
+          email: email,
+          isFavorite: true,
+      }
+      this.friends.push(createNewFriend)
+    },
     toggleFavStatus(id,){
       let currentUser = this.friends.find((friend) => friend.id === id);
-      currentUser.isFavorite = !currentUser.isFavorite
-      
+      currentUser.isFavorite = !currentUser.isFavorite 
+    },
+    deletePerson(id){
+      console.log(id)
+     this.friends = this.friends.filter((friend) => friend.id !== id);
     }
   },
 };
