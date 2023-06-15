@@ -28,6 +28,7 @@ export default {
     email: String,
     favorite: Boolean,
   },
+  emits: ['toggle-favorite'],
   data() {
     return {
       detailsAreVisible: false,
