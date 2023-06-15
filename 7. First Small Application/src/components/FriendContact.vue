@@ -40,6 +40,9 @@ export default {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
+    toggleEvent(){
+      this.$emit('toggle-favorite')
+    }
   },
 };
 </script>
